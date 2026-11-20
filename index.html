@@ -1,12 +1,23 @@
-
 <!DOCTYPE html>
 <html lang="sq">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GjejShërbim | Shërbime Lokale në Kosovë</title>
+    <meta name="description" content="GjejShërbim është platformë për të gjetur profesionistë lokalë në Kosovë: elektricistë, hidraulikë, pastrim, mekanikë dhe më shumë. Krahaso dhe kontakto drejtpërdrejt.">
+    <meta name="theme-color" content="#f97316">
 
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="GjejShërbim | Shërbime Lokale në Kosovë">
+    <meta property="og:description" content="Gjej profesionistin e duhur për çdo nevojë, pranë teje.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1200">
+    <meta property="og:locale" content="sq_AL">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23f97316'/%3E%3Ccircle cx='50' cy='42' r='16' fill='white'/%3E%3Cpath d='M50 82 L30 52 h40z' fill='white'/%3E%3C/svg%3E">
+
+    <link rel="stylesheet" href="style.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,528 +30,261 @@
 
 <body>
 
+    <a href="#sherbimet" class="skip-link">Kalo te përmbajtja</a>
+
     <!-- HEADER -->
-    <header class="header">
+    <header class="header" id="header">
         <div class="container navbar">
 
-            <a href="index.html" class="logo">
-                <span class="logo-icon">
-                    <i class="fa-solid fa-location-dot"></i>
-                </span>
+            <a href="#ballina" class="logo" aria-label="GjejShërbim - Ballina">
+                <span class="logo-icon"><i class="fa-solid fa-location-dot"></i></span>
                 Gjej<span>Shërbim</span>
             </a>
 
-            <nav class="nav-links">
+            <nav class="nav-links" id="navLinks" aria-label="Navigimi kryesor">
                 <a href="#ballina" class="active">Ballina</a>
                 <a href="#kategorite">Kategoritë</a>
                 <a href="#sherbimet">Shërbimet</a>
                 <a href="#rreth-nesh">Rreth Nesh</a>
                 <a href="#kontakti">Kontakti</a>
+
+                <!-- Butonat për celular -->
+                <div class="nav-mobile-actions">
+                    <button type="button" class="login-btn" data-open-modal="loginModal">Kyçu</button>
+                    <button type="button" class="register-btn" data-open-modal="registerModal">Regjistrohu</button>
+                </div>
             </nav>
 
             <div class="nav-buttons">
-                <a href="#kycu" class="login-btn">Kyçu</a>
-                <a href="#regjistrohu" class="register-btn">Regjistrohu</a>
+                <button type="button" class="login-btn" data-open-modal="loginModal">Kyçu</button>
+                <button type="button" class="register-btn" data-open-modal="registerModal">Regjistrohu</button>
             </div>
 
-            <button class="menu-toggle" id="menuToggle">
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Hap menunë" aria-expanded="false" aria-controls="navLinks">
                 <i class="fa-solid fa-bars"></i>
             </button>
 
         </div>
     </header>
 
+    <main id="main">
 
-    <!-- HERO SECTION -->
-    <section class="hero" id="ballina">
+        <!-- HERO -->
+        <section class="hero" id="ballina">
+            <div class="container hero-content">
 
-        <div class="container hero-content">
+                <div class="hero-text">
 
-            <div class="hero-text">
+                    <span class="hero-label">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        Gjithçka që të nevojitet, në një vend
+                    </span>
 
-                <span class="hero-label">
-                    <i class="fa-solid fa-sparkles"></i>
-                    Gjithçka që të nevojitet, në një vend
-                </span>
+                    <h1>Gjej profesionistin e duhur <span>për çdo nevojë!</span></h1>
 
-                <h1>Gjej profesionistin e duhur <span>për çdo nevojë!</span></h1>
+                    <p>
+                        Kërko shërbime lokale sipas emrit, kategorisë ose qytetit,
+                        krahaso profesionistët dhe kontakto ofruesin që të përshtatet.
+                    </p>
 
-                <p>
-                    Kërko shërbime lokale sipas emrit, kategorisë ose qytetit,
-                    krahaso profesionistët dhe kontakto ofruesin që të përshtatet.
-                </p>
+                    <form class="search-box" id="serviceSearch" role="search">
 
-                <form class="search-box" id="serviceSearch">
+                        <div class="search-field">
+                            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                            <input type="search" id="searchInput" aria-label="Emri ose kategoria e shërbimit"
+                                placeholder="Emri ose kategoria e shërbimit" autocomplete="off">
+                        </div>
 
-                    <div class="search-field">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="search" id="searchInput" aria-label="Emri ose kategoria e shërbimit"
-                            placeholder="Emri ose kategoria e shërbimit">
+                        <div class="search-field location-field">
+                            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                            <input type="search" id="locationInput" aria-label="Qyteti ose lokacioni"
+                                placeholder="Qyteti ose lokacioni" autocomplete="off">
+                        </div>
+
+                        <button class="search-btn" id="searchBtn" type="submit">
+                            Kërko <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+
+                    </form>
+
+                    <div class="hero-stats" aria-label="Çfarë ofrojmë">
+                        <div><strong>10</strong><span>Kategori shërbimesh</span></div>
+                        <div><strong>100%</strong><span>Falas për klientët</span></div>
+                        <div><strong>Kosovë</strong><span>Mbulim në çdo qytet</span></div>
                     </div>
 
-                    <div class="search-field location-field">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <input type="search" id="locationInput" aria-label="Qyteti ose lokacioni"
-                            placeholder="Qyteti ose lokacioni">
+                    <div class="popular-searches">
+                        <span>Të kërkuara:</span>
+                        <button type="button" data-quick-search="Hidraulik">Hidraulik</button>
+                        <button type="button" data-quick-search="Elektricist">Elektricist</button>
+                        <button type="button" data-quick-search="Pastrim">Pastrim</button>
                     </div>
 
-                    <button class="search-btn" id="searchBtn" type="submit">
-                        Kërko <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-
-                </form>
-
-                <div class="hero-stats" aria-label="Statistikat e platformës">
-                    <div><strong>120+</strong><span>Ofrues të verifikuar</span></div>
-                    <div><strong>4.9</strong><span>Vlerësimi mesatar</span></div>
-                    <div><strong>24/7</strong><span>Mbështetje klienti</span></div>
                 </div>
 
-                <div class="popular-searches">
-                    <span>Të kërkuara:</span>
-                    <a href="#sherbimet">Hidraulik</a>
-                    <a href="#sherbimet">Elektricist</a>
-                    <a href="#sherbimet">Pastrim</a>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=900"
+                        alt="Profesionist duke punuar" width="900" height="600" fetchpriority="high">
+
+                    <div class="floating-card">
+                        <div class="floating-icon"><i class="fa-solid fa-circle-check"></i></div>
+                        <div>
+                            <h4>Profesionistë lokalë</h4>
+                            <p>Gjej ndihmën që të duhet</p>
+                        </div>
+                    </div>
                 </div>
 
             </div>
+        </section>
 
-            <div class="hero-image">
 
-                <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=900"
-                    alt="Profesionist duke punuar">
+        <!-- CATEGORIES (gjenerohen nga script.js) -->
+        <section class="categories section-padding" id="kategorite">
+            <div class="container">
 
-                <div class="floating-card">
-                    <div class="floating-icon">
-                        <i class="fa-solid fa-circle-check"></i>
-                    </div>
+                <div class="section-heading">
                     <div>
-                        <h4>Profesionistë lokalë</h4>
-                        <p>Gjej ndihmën që të duhet</p>
+                        <span class="section-label">KATEGORITË</span>
+                        <h2>Çfarë shërbimi të nevojitet?</h2>
+                        <p>Zgjidh një kategori dhe gjej profesionistë pranë teje.</p>
+                    </div>
+
+                    <a href="#sherbimet" class="view-all" data-reset-filters>
+                        Shiko të gjitha <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="category-grid" id="categoryGrid"></div>
+
+            </div>
+        </section>
+
+
+        <!-- SERVICES (gjenerohen nga script.js) -->
+        <section class="services section-padding" id="sherbimet">
+            <div class="container">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="section-label">SHËRBIMET</span>
+                        <h2>Shërbime të publikuara së fundmi</h2>
+                        <p>Krahaso çmimet, vendndodhjen dhe vlerësimet e ofruesve.</p>
                     </div>
                 </div>
 
+                <div class="service-filters" id="serviceFilters" aria-label="Filtro shërbimet"></div>
+
+                <div class="results-bar">
+                    <p class="results-count" id="resultsCount" role="status" aria-live="polite"></p>
+
+                    <label class="sort-box">
+                        <span>Rendit sipas:</span>
+                        <select id="sortSelect">
+                            <option value="newest">Më të rejat</option>
+                            <option value="rating">Vlerësimi më i lartë</option>
+                            <option value="price-asc">Çmimi: nga më i ulëti</option>
+                            <option value="price-desc">Çmimi: nga më i larti</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="service-grid" id="serviceGrid"></div>
+
+                <div class="empty-state" id="emptyState" hidden>
+                    <i class="fa-solid fa-face-frown"></i>
+                    <h3>Nuk u gjetën rezultate</h3>
+                    <p>Provo me një fjalë tjetër, një qytet tjetër ose pastro filtrat.</p>
+                    <button type="button" class="register-btn" id="clearFilters">Pastro filtrat</button>
+                </div>
+
+                <div class="load-more-wrap">
+                    <button type="button" class="outline-btn" id="loadMoreBtn" hidden>Ngarko më shumë</button>
+                </div>
+
             </div>
-
-        </div>
-
-    </section>
+        </section>
 
 
-    <!-- CATEGORIES -->
-    <section class="categories section-padding" id="kategorite">
+        <!-- TOP PROVIDERS (gjenerohen nga script.js) -->
+        <section class="featured-providers section-padding" aria-labelledby="providersTitle">
+            <div class="container">
+                <div class="section-heading">
+                    <div>
+                        <span class="section-label">PROFESIONISTËT</span>
+                        <h2 id="providersTitle">Ofruesit më të vlerësuar</h2>
+                        <p>Profesionistët me vlerësimet më të larta në platformë.</p>
+                    </div>
+                </div>
+                <div class="provider-grid" id="providerGrid"></div>
+            </div>
+        </section>
 
-        <div class="container">
 
-            <div class="section-heading">
+        <!-- HOW IT WORKS -->
+        <section class="how-it-works section-padding">
+            <div class="container">
+
+                <div class="section-heading center">
+                    <span class="section-label">SI FUNKSIONON?</span>
+                    <h2>Vetëm tre hapa të thjeshtë</h2>
+                    <p>Gjetja e shërbimit të duhur nuk ka qenë kurrë më e lehtë.</p>
+                </div>
+
+                <div class="steps-grid">
+
+                    <div class="step-card">
+                        <div class="step-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <span class="step-number">01</span>
+                        <h3>Kërko shërbimin</h3>
+                        <p>Zgjidh kategorinë dhe kërko shërbimin që të nevojitet.</p>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-icon"><i class="fa-solid fa-user-check"></i></div>
+                        <span class="step-number">02</span>
+                        <h3>Zgjidh ofruesin</h3>
+                        <p>Shiko profilet, përshkrimet dhe vlerësimet e ofruesve.</p>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-icon"><i class="fa-solid fa-handshake"></i></div>
+                        <span class="step-number">03</span>
+                        <h3>Kontakto drejtpërdrejt</h3>
+                        <p>Lidhu me ofruesin dhe realizo shërbimin që kërkon.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- PROVIDER CTA -->
+        <section class="provider-section" id="rreth-nesh">
+            <div class="container provider-content">
+
                 <div>
-                    <span class="section-label">KATEGORITË</span>
-                    <h2>Çfarë shërbimi të nevojitet?</h2>
-                    <p>Zgjidh një kategori dhe gjej profesionistë pranë teje.</p>
+                    <span class="section-label">PËR OFRUESIT</span>
+                    <h2>Ke një aftësi? Ktheje atë në mundësi!</h2>
+                    <p>
+                        Prezanto shërbimet e tua, arrij klientë të rinj
+                        dhe zgjero mundësitë e biznesit tënd përmes platformës sonë.
+                    </p>
+
+                    <button type="button" class="provider-btn" data-open-modal="registerModal" data-role="provider">
+                        Bëhu ofrues <i class="fa-solid fa-arrow-right"></i>
+                    </button>
                 </div>
 
-                <a href="#sherbimet" class="view-all">
-                    Shiko të gjitha <i class="fa-solid fa-arrow-right"></i>
-                </a>
-            </div>
-
-            <div class="category-grid">
-
-                <div class="category-card" data-category="Elektricistë" tabindex="0">
-                    <div class="category-icon orange"><i class="fa-solid fa-bolt"></i></div>
-                    <h3>Elektricistë</h3>
-                    <p>Instalime dhe riparime elektrike</p>
-                </div>
-
-                <div class="category-card" data-category="Dentistë" tabindex="0">
-                    <div class="category-icon blue"><i class="fa-solid fa-tooth"></i></div>
-                    <h3>Dentistë</h3>
-                    <p>Kujdes dhe trajtime dentare</p>
-                </div>
-
-                <div class="category-card" data-category="Sallone bukurie" tabindex="0">
-                    <div class="category-icon pink"><i class="fa-solid fa-spa"></i></div>
-                    <h3>Sallone bukurie</h3>
-                    <p>Shërbime bukurie dhe kujdesi</p>
-                </div>
-
-                <div class="category-card" data-category="Mjeshtër shtëpiak" tabindex="0">
-                    <div class="category-icon yellow"><i class="fa-solid fa-screwdriver-wrench"></i></div>
-                    <h3>Mjeshtër shtëpiak</h3>
-                    <p>Riparime dhe punë në shtëpi</p>
-                </div>
-
-                <div class="category-card" data-category="Hidraulikë" tabindex="0">
-                    <div class="category-icon blue">
-                        <i class="fa-solid fa-faucet"></i>
-                    </div>
-                    <h3>Hidraulikë</h3>
-                    <p>Riparime dhe instalime</p>
-                </div>
-
-                <div class="category-card" data-category="Pastrim i shtëpive" tabindex="0">
-                    <div class="category-icon green">
-                        <i class="fa-solid fa-broom"></i>
-                    </div>
-                    <h3>Pastrim i shtëpive</h3>
-                    <p>Pastrim i shtëpive dhe lokaleve</p>
-                </div>
-
-                <div class="category-card" data-category="Mekanikë" tabindex="0">
-                    <div class="category-icon purple"><i class="fa-solid fa-car"></i></div>
-                    <h3>Mekanikë</h3>
-                    <p>Diagnostikim dhe riparim automjetesh</p>
-                </div>
-
-                <div class="category-card" data-category="Riparim i kompjuterëve" tabindex="0">
-                    <div class="category-icon blue"><i class="fa-solid fa-laptop-code"></i></div>
-                    <h3>Riparim i kompjuterëve</h3>
-                    <p>Riparim dhe mirëmbajtje IT</p>
-                </div>
-
-                <div class="category-card" data-category="Shërbime të ndërtimit" tabindex="0">
-                    <div class="category-icon yellow"><i class="fa-solid fa-hammer"></i></div>
-                    <h3>Shërbime të ndërtimit</h3>
-                    <p>Ndërtim, renovim dhe punime</p>
-                </div>
-
-                <div class="category-card" data-category="Kopshtarë" tabindex="0">
-                    <div class="category-icon green"><i class="fa-solid fa-seedling"></i></div>
-                    <h3>Kopshtarë</h3>
-                    <p>Kujdes dhe mirëmbajtje kopshtesh</p>
+                <div class="provider-image">
+                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800"
+                        alt="Ofrues i shërbimeve" width="800" height="330" loading="lazy">
                 </div>
 
             </div>
+        </section>
 
-        </div>
-
-    </section>
-
-
-    <!-- SERVICES -->
-    <section class="services section-padding" id="sherbimet">
-
-        <div class="container">
-
-            <div class="section-heading">
-                <div>
-                    <span class="section-label">SHËRBIMET</span>
-                    <h2>Shërbime të publikuara së fundmi</h2>
-                    <p>Krahaso çmimet, vendndodhjen dhe vlerësimet e ofruesve.</p>
-                </div>
-                <div class="service-filters" aria-label="Filtro shërbimet">
-                    <button class="filter-btn active" data-filter="all">Të gjitha</button>
-                    <button class="filter-btn" data-filter="Elektricistë">Elektricistë</button>
-                    <button class="filter-btn" data-filter="Dentistë">Dentistë</button>
-                    <button class="filter-btn" data-filter="Sallone bukurie">Sallone bukurie</button>
-                    <button class="filter-btn" data-filter="Mjeshtër shtëpiak">Mjeshtër shtëpiak</button>
-                    <button class="filter-btn" data-filter="Hidraulikë">Hidraulikë</button>
-                    <button class="filter-btn" data-filter="Pastrim i shtëpive">Pastrim i shtëpive</button>
-                    <button class="filter-btn" data-filter="Mekanikë">Mekanikë</button>
-                    <button class="filter-btn" data-filter="Riparim i kompjuterëve">Riparim i kompjuterëve</button>
-                    <button class="filter-btn" data-filter="Shërbime të ndërtimit">Ndërtim</button>
-                    <button class="filter-btn" data-filter="Kopshtarë">Kopshtarë</button>
-                </div>
-            </div>
-
-            <div class="service-grid">
-
-                <div class="service-card reveal" data-category="Elektricistë" data-location="Gjilan">
-                    <button class="favorite-btn" type="button" aria-label="Ruaj shërbimin"><i class="fa-regular fa-heart"></i></button>
-                    <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=600"
-                        alt="Shërbime elektrike">
-
-                    <div class="service-info">
-                        <span class="service-category">Elektricistë</span>
-                        <h3>Instalime dhe riparime elektrike</h3>
-                        <p class="service-provider">nga Arben Krasniqi</p>
-
-                        <div class="service-location">
-                            <i class="fa-solid fa-location-dot"></i>
-                            Gjilan
-                        </div>
-
-                        <div class="service-bottom">
-                            <span><strong>25€</strong> / nga</span>
-                            <span class="rating">
-                                <i class="fa-solid fa-star"></i> 4.9
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="service-card reveal" data-category="Pastrim i shtëpive" data-location="Prishtinë">
-                    <button class="favorite-btn" type="button" aria-label="Ruaj shërbimin"><i class="fa-regular fa-heart"></i></button>
-                    <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600"
-                        alt="Shërbime pastrimi">
-
-                    <div class="service-info">
-                        <span class="service-category">Pastrim i shtëpive</span>
-                        <h3>Pastrim profesional i ambienteve</h3>
-                        <p class="service-provider">nga Vjollca Berisha</p>
-
-                        <div class="service-location">
-                            <i class="fa-solid fa-location-dot"></i>
-                            Prishtinë
-                        </div>
-
-                        <div class="service-bottom">
-                            <span><strong>30€</strong> / nga</span>
-                            <span class="rating">
-                                <i class="fa-solid fa-star"></i> 4.8
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="service-card reveal" data-category="Hidraulikë" data-location="Ferizaj">
-                    <button class="favorite-btn" type="button" aria-label="Ruaj shërbimin"><i class="fa-regular fa-heart"></i></button>
-                    <img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=600"
-                        alt="Shërbime hidraulike">
-
-                    <div class="service-info">
-                        <span class="service-category">Hidraulikë</span>
-                        <h3>Instalime dhe riparime hidraulike</h3>
-                        <p class="service-provider">nga Ilir Gashi</p>
-
-                        <div class="service-location">
-                            <i class="fa-solid fa-location-dot"></i>
-                            Ferizaj
-                        </div>
-
-                        <div class="service-bottom">
-                            <span><strong>20€</strong> / nga</span>
-                            <span class="rating">
-                                <i class="fa-solid fa-star"></i> 4.7
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="service-card reveal" data-category="Dentistë" data-location="Prishtinë">
-                    <button class="favorite-btn" type="button" aria-label="Ruaj shërbimin"><i class="fa-regular fa-heart"></i></button>
-                    <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=600" alt="Kontroll dentar">
-                    <div class="service-info">
-                        <span class="service-category">Dentistë</span>
-                        <h3>Kontroll dhe pastrim dentar</h3>
-                        <p class="service-provider">nga Dr. Elira Hoxha</p>
-                        <div class="service-location"><i class="fa-solid fa-location-dot"></i> Prishtinë</div>
-                        <div class="service-bottom"><span><strong>20€</strong> / nga</span><span class="rating"><i class="fa-solid fa-star"></i> 4.9</span></div>
-                    </div>
-                </div>
-
-                <div class="service-card reveal" data-category="Sallone bukurie" data-location="Gjilan">
-                    <button class="favorite-btn" type="button" aria-label="Ruaj shërbimin"><i class="fa-regular fa-heart"></i></button>
-                    <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600" alt="Sallon bukurie">
-                    <div class="service-info">
-                        <span class="service-category">Sallone bukurie</span>
-                        <h3>Stilim dhe kujdes për flokët</h3>
-                        <p class="service-provider">nga Arta Beauty Studio</p>
-                        <div class="service-location"><i class="fa-solid fa-location-dot"></i> Gjilan</div>
-                        <div class="service-bottom"><span><strong>15€</strong> / nga</span><span class="rating"><i class="fa-solid fa-star"></i> 4.8</span></div>
-                    </div>
-                </div>
-
-                <div class="service-card reveal" data-category="Mjeshtër shtëpiak" data-location="Ferizaj">
-                    <button class="favorite-btn" type="button" aria-label="Ruaj shërbimin"><i class="fa-regular fa-heart"></i></button>
-                    <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=600" alt="Riparime në shtëpi">
-                    <div class="service-info">
-                        <span class="service-category">Mjeshtër shtëpiak</span>
-                        <h3>Montim mobiliesh dhe rafte</h3>
-                        <p class="service-provider">nga Besnik Aliu</p>
-                        <div class="service-location"><i class="fa-solid fa-location-dot"></i> Ferizaj</div>
-                        <div class="service-bottom"><span><strong>18€</strong> / nga</span><span class="rating"><i class="fa-solid fa-star"></i> 4.7</span></div>
-                    </div>
-                </div>
-
-                <div class="service-card reveal" data-category="Mekanikë" data-location="Prizren">
-                    <button class="favorite-btn" type="button" aria-label="Ruaj shërbimin"><i class="fa-regular fa-heart"></i></button>
-                    <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600" alt="Servis automjetesh">
-                    <div class="service-info">
-                        <span class="service-category">Mekanikë</span>
-                        <h3>Diagnostikim i automjetit</h3>
-                        <p class="service-provider">nga Auto Servis Luan</p>
-                        <div class="service-location"><i class="fa-solid fa-location-dot"></i> Prizren</div>
-                        <div class="service-bottom"><span><strong>25€</strong> / nga</span><span class="rating"><i class="fa-solid fa-star"></i> 4.8</span></div>
-                    </div>
-                </div>
-
-                <div class="service-card reveal" data-category="Riparim i kompjuterëve" data-location="Prishtinë">
-                    <button class="favorite-btn" type="button" aria-label="Ruaj shërbimin"><i class="fa-regular fa-heart"></i></button>
-                    <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600" alt="Riparim kompjuteri">
-                    <div class="service-info">
-                        <span class="service-category">Riparim i kompjuterëve</span>
-                        <h3>Diagnostikim dhe riparim laptopi</h3>
-                        <p class="service-provider">nga Driton Tech</p>
-                        <div class="service-location"><i class="fa-solid fa-location-dot"></i> Prishtinë</div>
-                        <div class="service-bottom"><span><strong>15€</strong> / nga</span><span class="rating"><i class="fa-solid fa-star"></i> 4.9</span></div>
-                    </div>
-                </div>
-
-                <div class="service-card reveal" data-category="Shërbime të ndërtimit" data-location="Gjilan">
-                    <button class="favorite-btn" type="button" aria-label="Ruaj shërbimin"><i class="fa-regular fa-heart"></i></button>
-                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600" alt="Punime ndërtimi">
-                    <div class="service-info">
-                        <span class="service-category">Shërbime të ndërtimit</span>
-                        <h3>Renovim dhe punime të brendshme</h3>
-                        <p class="service-provider">nga Ekipi Dauti</p>
-                        <div class="service-location"><i class="fa-solid fa-location-dot"></i> Gjilan</div>
-                        <div class="service-bottom"><span><strong>50€</strong> / nga</span><span class="rating"><i class="fa-solid fa-star"></i> 4.8</span></div>
-                    </div>
-                </div>
-
-                <div class="service-card reveal" data-category="Kopshtarë" data-location="Pejë">
-                    <button class="favorite-btn" type="button" aria-label="Ruaj shërbimin"><i class="fa-regular fa-heart"></i></button>
-                    <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600" alt="Kujdes për kopshtin">
-                    <div class="service-info">
-                        <span class="service-category">Kopshtarë</span>
-                        <h3>Mirëmbajtje dhe rregullim kopshti</h3>
-                        <p class="service-provider">nga Liridon Kelmendi</p>
-                        <div class="service-location"><i class="fa-solid fa-location-dot"></i> Pejë</div>
-                        <div class="service-bottom"><span><strong>20€</strong> / nga</span><span class="rating"><i class="fa-solid fa-star"></i> 4.7</span></div>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <section class="featured-providers section-padding" aria-labelledby="providersTitle">
-        <div class="container">
-            <div class="section-heading">
-                <div>
-                    <span class="section-label">PROFESIONISTËT</span>
-                    <h2 id="providersTitle">Ofruesit më të vlerësuar</h2>
-                    <p>Profesionistë të rekomanduar nga klientët tanë.</p>
-                </div>
-            </div>
-            <div class="provider-grid">
-                <article class="provider-card">
-                    <div class="provider-avatar">AK</div>
-                    <h3>Arben Krasniqi</h3>
-                    <p>Elektricist · Gjilan</p>
-                    <span class="rating"><i class="fa-solid fa-star"></i> 4.9 <small>(48 vlerësime)</small></span>
-                </article>
-                <article class="provider-card">
-                    <div class="provider-avatar">VH</div>
-                    <h3>Vjollca Berisha</h3>
-                    <p>Pastrim i shtëpive · Prishtinë</p>
-                    <span class="rating"><i class="fa-solid fa-star"></i> 4.9 <small>(36 vlerësime)</small></span>
-                </article>
-                <article class="provider-card">
-                    <div class="provider-avatar">IG</div>
-                    <h3>Ilir Gashi</h3>
-                    <p>Hidraulik · Ferizaj</p>
-                    <span class="rating"><i class="fa-solid fa-star"></i> 4.8 <small>(29 vlerësime)</small></span>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <section class="reviews section-padding" aria-labelledby="reviewsTitle">
-        <div class="container">
-            <div class="section-heading">
-                <div>
-                    <span class="section-label">PËRSHTYPJET</span>
-                    <h2 id="reviewsTitle">Çfarë thonë klientët</h2>
-                    <p>Përvoja të klientëve që gjetën profesionistin e duhur.</p>
-                </div>
-            </div>
-            <div class="review-grid">
-                <article class="review-card">
-                    <div class="review-stars" aria-label="5 nga 5 yje">★★★★★</div>
-                    <blockquote>“E gjeta shpejt një elektricist të mirë në Gjilan. Komunikimi dhe shërbimi ishin shumë profesionalë.”</blockquote>
-                    <p class="review-author">— Hana M., Gjilan</p>
-                </article>
-                <article class="review-card">
-                    <div class="review-stars" aria-label="5 nga 5 yje">★★★★★</div>
-                    <blockquote>“Krahasova disa ofrues dhe zgjodha atë që përshtatej me nevojat dhe buxhetin tim.”</blockquote>
-                    <p class="review-author">— Luan B., Prishtinë</p>
-                </article>
-                <article class="review-card">
-                    <div class="review-stars" aria-label="5 nga 5 yje">★★★★★</div>
-                    <blockquote>“Platformë e thjeshtë për t’u përdorur. Ofruesi u përgjigj shpejt dhe puna u krye me kujdes.”</blockquote>
-                    <p class="review-author">— Elira S., Ferizaj</p>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section class="how-it-works section-padding">
-
-        <div class="container">
-
-            <div class="section-heading center">
-                <span class="section-label">SI FUNKSIONON?</span>
-                <h2>Vetëm tre hapa të thjeshtë</h2>
-                <p>Gjetja e shërbimit të duhur nuk ka qenë kurrë më e lehtë.</p>
-            </div>
-
-            <div class="steps-grid">
-
-                <div class="step-card">
-                    <div class="step-icon">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                    <span class="step-number">01</span>
-                    <h3>Kërko shërbimin</h3>
-                    <p>Zgjidh kategorinë dhe kërko shërbimin që të nevojitet.</p>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-icon">
-                        <i class="fa-solid fa-user-check"></i>
-                    </div>
-                    <span class="step-number">02</span>
-                    <h3>Zgjidh ofruesin</h3>
-                    <p>Shiko profilet, përshkrimet dhe vlerësimet e ofruesve.</p>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-icon">
-                        <i class="fa-solid fa-handshake"></i>
-                    </div>
-                    <span class="step-number">03</span>
-                    <h3>Kontakto drejtpërdrejt</h3>
-                    <p>Lidhu me ofruesin dhe realizo shërbimin që kërkon.</p>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- PROVIDER SECTION -->
-    <section class="provider-section" id="rreth-nesh">
-
-        <div class="container provider-content">
-
-            <div>
-                <span class="section-label">PËR OFRUESIT</span>
-                <h2>Ke një aftësi? Ktheje atë në mundësi!</h2>
-                <p>
-                    Prezanto shërbimet e tua, arrij klientë të rinj
-                    dhe zgjero mundësitë e biznesit tënd përmes platformës sonë.
-                </p>
-
-                <a href="#regjistrohu" class="provider-btn">
-                    Bëhu ofrues <i class="fa-solid fa-arrow-right"></i>
-                </a>
-            </div>
-
-            <div class="provider-image">
-                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800"
-                    alt="Ofrues i shërbimeve">
-            </div>
-
-        </div>
-
-    </section>
+    </main>
 
 
     <!-- FOOTER -->
@@ -550,9 +294,7 @@
 
             <div class="footer-about">
                 <a href="#ballina" class="logo footer-logo">
-                    <span class="logo-icon">
-                        <i class="fa-solid fa-location-dot"></i>
-                    </span>
+                    <span class="logo-icon"><i class="fa-solid fa-location-dot"></i></span>
                     Gjej<span>Shërbim</span>
                 </a>
 
@@ -575,46 +317,102 @@
                 <h3>Informacione</h3>
                 <a href="#kontakti">Kontakti</a>
                 <a href="#rreth-nesh">Për ofruesit</a>
-                <a href="#kycu">Kyçu</a>
-                <a href="#regjistrohu">Regjistrohu</a>
+                <button type="button" data-open-modal="loginModal">Kyçu</button>
+                <button type="button" data-open-modal="registerModal">Regjistrohu</button>
             </div>
 
             <div class="footer-links">
                 <h3>Na kontaktoni</h3>
-                <p><i class="fa-solid fa-envelope"></i> info@localmarket.com</p>
+                <!-- NDRYSHO: vendos email-in tënd real -->
+                <p><i class="fa-solid fa-envelope"></i> info@gjejsherbim.com</p>
                 <p><i class="fa-solid fa-location-dot"></i> Kosovë</p>
 
                 <div class="social-links">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
             </div>
 
         </div>
 
         <div class="footer-bottom">
-            <p>© 2026 GjejSherbim. Të gjitha të drejtat e rezervuara.</p>
+            <p>© 2026 GjejShërbim. Të gjitha të drejtat e rezervuara.</p>
         </div>
 
     </footer>
 
-    <div class="modal-backdrop" id="providerModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+
+    <!-- MODAL: KONTAKTO OFRUESIN -->
+    <div class="modal-backdrop" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
         <div class="modal-card">
             <button class="modal-close" type="button" aria-label="Mbyll"><i class="fa-solid fa-xmark"></i></button>
             <span class="section-label">DËRGONI NJË MESAZH</span>
-            <h2 id="modalTitle">Kontaktoni ofruesin</h2>
-            <form id="providerForm">
+            <h2 id="contactTitle">Kontaktoni ofruesin</h2>
+            <p class="modal-sub" id="contactSub"></p>
+            <form id="contactForm" novalidate>
+                <input type="hidden" name="service" id="contactService">
                 <label>Emri dhe mbiemri
-                    <input type="text" name="name" placeholder="Emri juaj" required>
+                    <input type="text" name="name" placeholder="Emri juaj" required minlength="3" autocomplete="name">
                 </label>
                 <label>Telefoni
-                    <input type="tel" name="phone" placeholder="+383..." required>
+                    <input type="tel" name="phone" placeholder="+38340000000" required
+                        pattern="^\+?[0-9\s]{8,15}$" autocomplete="tel">
                 </label>
                 <label>Çfarë shërbimi ju nevojitet?
-                    <textarea name="message" rows="4" placeholder="Përshkruani shkurtimisht kërkesën tuaj" required></textarea>
+                    <textarea name="message" rows="4" placeholder="Përshkruani shkurtimisht kërkesën tuaj" required minlength="10"></textarea>
                 </label>
+                <p class="form-error" role="alert"></p>
                 <button class="register-btn modal-submit" type="submit">Dërgo kërkesën <i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: KYÇU -->
+    <div class="modal-backdrop" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+        <div class="modal-card">
+            <button class="modal-close" type="button" aria-label="Mbyll"><i class="fa-solid fa-xmark"></i></button>
+            <span class="section-label">MIRËSEVJEN PËRSËRI</span>
+            <h2 id="loginTitle">Kyçu në llogarinë tënde</h2>
+            <form id="loginForm" novalidate>
+                <label>Email
+                    <input type="email" name="email" placeholder="emri@email.com" required autocomplete="email">
+                </label>
+                <label>Fjalëkalimi
+                    <input type="password" name="password" placeholder="••••••••" required minlength="6" autocomplete="current-password">
+                </label>
+                <p class="form-error" role="alert"></p>
+                <button class="register-btn modal-submit" type="submit">Kyçu</button>
+                <p class="modal-switch">Nuk ke llogari? <button type="button" data-switch-modal="registerModal">Regjistrohu</button></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: REGJISTROHU -->
+    <div class="modal-backdrop" id="registerModal" role="dialog" aria-modal="true" aria-labelledby="registerTitle">
+        <div class="modal-card">
+            <button class="modal-close" type="button" aria-label="Mbyll"><i class="fa-solid fa-xmark"></i></button>
+            <span class="section-label">LLOGARI E RE</span>
+            <h2 id="registerTitle">Krijo llogarinë tënde</h2>
+            <form id="registerForm" novalidate>
+                <label>Emri dhe mbiemri
+                    <input type="text" name="name" placeholder="Emri juaj" required minlength="3" autocomplete="name">
+                </label>
+                <label>Email
+                    <input type="email" name="email" placeholder="emri@email.com" required autocomplete="email">
+                </label>
+                <label>Fjalëkalimi
+                    <input type="password" name="password" placeholder="Të paktën 6 karaktere" required minlength="6" autocomplete="new-password">
+                </label>
+                <label>Dua të regjistrohem si
+                    <select name="role" id="registerRole">
+                        <option value="client">Klient (kërkoj shërbime)</option>
+                        <option value="provider">Ofrues (ofroj shërbime)</option>
+                    </select>
+                </label>
+                <p class="form-error" role="alert"></p>
+                <button class="register-btn modal-submit" type="submit">Regjistrohu</button>
+                <p class="modal-switch">Ke llogari? <button type="button" data-switch-modal="loginModal">Kyçu</button></p>
             </form>
         </div>
     </div>
@@ -624,7 +422,7 @@
     </button>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-    <script src="js/script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>
